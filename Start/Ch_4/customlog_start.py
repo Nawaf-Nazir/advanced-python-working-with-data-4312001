@@ -3,13 +3,17 @@
 import logging
 
 # TODO: add another function to log from
-
+def another_function():
+    logging.debug("This is a debug level log message", extra=extdata)
 
 # set the output file and debug level, and
 # TODO: use a custom formatting specification
+fmtstr ="User: %(user)s %(asctime)s: %(levelname)s: %(funcName)s Line:%(lineno)d %(message)s"
+datestr = "%m:%d:%Y %I:%M:%S %p"
+extdata ={"user": "nawaf@.com"}
 logging.basicConfig(filename="output.log",
-                    level=logging.DEBUG)
+                    level=logging.DEBUG, format=fmtstr, datefmt=datestr)
 
-logging.info("This is an info-level log message")
-logging.warning("This is a warning-level message")
-
+logging.info("This is an info-level log message", extra=extdata)
+logging.warning("This is a warning-level message", extra=extdata)
+another_function()
